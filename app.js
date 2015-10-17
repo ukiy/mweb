@@ -5,10 +5,22 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// config file
+var conf;
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+// mongoose
+var mongoose = require('mongoose');
+
+if (process.env.NODE_ENV == 'development'){
+  conf = require('./conf/conf').production;
+} else {
+  conf = require('./conf/conf').development;
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
