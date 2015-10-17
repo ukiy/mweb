@@ -73,9 +73,9 @@ function searchOrder(query){
   }
   console.log('search', search);
   if (query.hasOwnProperty('limit')){
-    return Order.find(search).sort('-orderdate').limit(query.limit).exec();
+    return Order.find(search).sort({'orderDateTime': -1}).limit(query.limit).exec();
   }
-  return Order.find(search).sort('-orderdate').limit(100).exec();
+  return Order.find(search).sort({'orderDateTime': -1}).limit(100).exec();
 };
 
 function searchUser(query) {
