@@ -1,13 +1,13 @@
 module.exports = {
   development: {
     mongo: {
-      uri: 'localhost',
+      uri: 'mongodb://localhost/mweb-develop',
       opt: {}
     }
   },
   production: {
     mongo: {
-      uri: 'localhost',
+      uri: 'mongodb://localhost/mweb',
       opt: {}
     }
   }
