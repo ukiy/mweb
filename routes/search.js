@@ -1,4 +1,6 @@
 var Order = require('../models/order');
+var User = require('../models/user');
+var Item = require('../models/item');
 
 module.exports = function(query){
   var collection = null;
