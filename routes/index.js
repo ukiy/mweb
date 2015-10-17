@@ -24,9 +24,6 @@ router.get('/getOrder/:orderId', function(req, res, next){
 router.get('/searchOrder', function(req, res){
   console.log(req.query);
   search(req.query).then(function(data){
-    if(data.error) {
-      return res.status(404).send(data);
-    }
     res.status(200).send({
       result: true,
       data: data
