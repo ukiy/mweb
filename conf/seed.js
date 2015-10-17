@@ -79,7 +79,7 @@ streamOrder.on('data', function(data){
     }
     var newOrder = new Order({
       orderId: cols[0],
-      orderDateTime: new Date(parseInt(cols[1]) * 1000),
+      orderDateTime: parseInt(cols[1]) * 1000,
       orderUserId: cols[2],
       orderItemId: cols[3],
       orderQuantity: parseInt(cols[4]),

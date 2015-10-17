@@ -16,11 +16,13 @@ var app = express();
 // mongoose
 var mongoose = require('mongoose');
 
-if (process.env.NODE_ENV == 'development'){
+if (process.env.NODE_ENV == 'production'){
   conf = require('./conf/conf').production;
 } else {
   conf = require('./conf/conf').development;
 }
+
+mongoose.connect(conf.mongo.uri);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
