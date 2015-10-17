@@ -1,0 +1,166 @@
+No-01-03-orderUserIdの一致
+Judge:Incorrect
+Options:{ port: 80,
+  method: 'GET',
+  hostname: '52.69.162.141',
+  headers: { Connection: 'close' },
+  path: '/searchOrder?findByOrderUserId=Us2ud08i&limit=70' }
+DecodedPath:/searchOrder?findByOrderUserId=Us2ud08i&limit=70
+Senario Logs:[ [ 'resultプロパティが無い', { response: [Object] } ],
+  [ 'TAT', { TAT: undefined, TimeOut: 1000 } ] ]
+
+No-01-04-orderUserIdの一致
+Judge:Incorrect
+Options:{ port: 80,
+  method: 'GET',
+  hostname: '52.69.162.141',
+  headers: { Connection: 'close' },
+  path: '/searchOrder?findByOrderItemId=Itmc69wk&limit=57' }
+DecodedPath:/searchOrder?findByOrderItemId=Itmc69wk&limit=57
+Senario Logs:[ [ 'resultプロパティが無い', { response: [Object] } ],
+  [ 'TAT', { TAT: undefined, TimeOut: 1000 } ] ]
+
+No-01-05-orderQuantityの範囲（GTE）
+Judge:Incorrect
+Options:{ port: 80,
+  method: 'GET',
+  hostname: '52.69.162.141',
+  headers: { Connection: 'close' },
+  path: '/searchOrder?findByOrderQuantityGTE=35&limit=48' }
+DecodedPath:/searchOrder?findByOrderQuantityGTE=35&limit=48
+Senario Logs:[ [ 'resultプロパティが無い', { response: [Object] } ],
+  [ 'TAT', { TAT: undefined, TimeOut: 1000 } ] ]
+
+No-01-06-orderQuantityの範囲（LTE）
+Judge:Incorrect
+Options:{ port: 80,
+  method: 'GET',
+  hostname: '52.69.162.141',
+  headers: { Connection: 'close' },
+  path: '/searchOrder?findByOrderQuantityLTE=45&limit=94' }
+DecodedPath:/searchOrder?findByOrderQuantityLTE=45&limit=94
+Senario Logs:[ [ 'resultプロパティが無い', { response: [] } ],
+  [ 'TAT', { TAT: undefined, TimeOut: 1000 } ] ]
+
+No-01-07-orderStateの一致
+Judge:Incorrect
+Options:{ port: 80,
+  method: 'GET',
+  hostname: '52.69.162.141',
+  headers: { Connection: 'close' },
+  path: '/searchOrder?findByOrderState=%E4%BF%9D%E7%95%99&limit=58' }
+DecodedPath:/searchOrder?findByOrderState=保留&limit=58
+Senario Logs:[ [ 'resultプロパティが無い', { response: [Object] } ],
+  [ 'TAT', { TAT: undefined, TimeOut: 1000 } ] ]
+
+No-02-01-userCompanyの一致
+Judge:Incorrect
+Options:{ port: 80,
+  method: 'GET',
+  hostname: '52.69.162.141',
+  headers: { Connection: 'close' },
+  path: '/searchOrder?findByUserCompany=%E3%82%B2%E3%83%83%E3%82%B5%E3%83%B3%E4%BF%A1%E9%87%91&limit=65' }
+DecodedPath:/searchOrder?findByUserCompany=ゲッサン信金&limit=65
+Senario Logs:[ [ 'HTTPレスポンスステータスが200で無い', { status: '500' } ],
+  [ 'TAT', { TAT: undefined, TimeOut: 1000 } ] ]
+
+No-02-02-userDiscountRateの範囲（GTE）
+Judge:Incorrect
+Options:{ port: 80,
+  method: 'GET',
+  hostname: '52.69.162.141',
+  headers: { Connection: 'close' },
+  path: '/searchOrder?findByUserDiscountRateGTE=38&limit=91' }
+DecodedPath:/searchOrder?findByUserDiscountRateGTE=38&limit=91
+Senario Logs:[ [ 'HTTPレスポンスステータスが200で無い', { status: '500' } ],
+  [ 'TAT', { TAT: undefined, TimeOut: 1000 } ] ]
+
+No-02-03-userDiscountRateの範囲（LTE）
+Judge:Incorrect
+Options:{ port: 80,
+  method: 'GET',
+  hostname: '52.69.162.141',
+  headers: { Connection: 'close' },
+  path: '/searchOrder?findByUserDiscountRateLTE=38&limit=42' }
+DecodedPath:/searchOrder?findByUserDiscountRateLTE=38&limit=42
+Senario Logs:[ [ 'HTTPレスポンスステータスが200で無い', { status: '500' } ],
+  [ 'TAT', { TAT: undefined, TimeOut: 1000 } ] ]
+
+No-03-01-itemSupplierの一致
+Judge:Incorrect
+Options:{ port: 80,
+  method: 'GET',
+  hostname: '52.69.162.141',
+  headers: { Connection: 'close' },
+  path: '/searchOrder?findByItemSupplier=%E3%82%B2%E3%83%83%E3%82%B5%E3%83%B3%E3%82%BD%E3%83%BC%E3%82%B7%E3%83%A3%E3%83%AB%E3%82%B2%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0%E8%88%88%E6%A5%AD&limit=93' }
+DecodedPath:/searchOrder?findByItemSupplier=ゲッサンソーシャルゲーミング興業&limit=93
+Senario Logs:[ [ 'HTTPレスポンスステータスが200で無い', { status: '500' } ],
+  [ 'TAT', { TAT: undefined, TimeOut: 1000 } ] ]
+
+No-03-02-itemStockQuantityの範囲（GTE）
+Judge:Incorrect
+Options:{ port: 80,
+  method: 'GET',
+  hostname: '52.69.162.141',
+  headers: { Connection: 'close' },
+  path: '/searchOrder?findByItemStockQuantityGTE=4773&limit=30' }
+DecodedPath:/searchOrder?findByItemStockQuantityGTE=4773&limit=30
+Senario Logs:[ [ 'HTTPレスポンスステータスが200で無い', { status: '500' } ],
+  [ 'TAT', { TAT: undefined, TimeOut: 1000 } ] ]
+
+No-03-03-itemStockQuantityの範囲（LTE）
+Judge:Incorrect
+Options:{ port: 80,
+  method: 'GET',
+  hostname: '52.69.162.141',
+  headers: { Connection: 'close' },
+  path: '/searchOrder?findByItemStockQuantityLTE=2062&limit=20' }
+DecodedPath:/searchOrder?findByItemStockQuantityLTE=2062&limit=20
+Senario Logs:[ [ 'HTTPレスポンスステータスが200で無い', { status: '500' } ],
+  [ 'TAT', { TAT: undefined, TimeOut: 1000 } ] ]
+
+No-03-04-itemBasePriceの範囲（LTE）
+Judge:Incorrect
+Options:{ port: 80,
+  method: 'GET',
+  hostname: '52.69.162.141',
+  headers: { Connection: 'close' },
+  path: '/searchOrder?findByItemBasePriceGTE=62300&limit=95' }
+DecodedPath:/searchOrder?findByItemBasePriceGTE=62300&limit=95
+Senario Logs:[ [ 'HTTPレスポンスステータスが200で無い', { status: '500' } ],
+  [ 'TAT', { TAT: undefined, TimeOut: 1000 } ] ]
+
+No-03-05-itemBasePriceの範囲（LTE）
+Judge:Incorrect
+Options:{ port: 80,
+  method: 'GET',
+  hostname: '52.69.162.141',
+  headers: { Connection: 'close' },
+  path: '/searchOrder?findByItemBasePriceLTE=86500&limit=42' }
+DecodedPath:/searchOrder?findByItemBasePriceLTE=86500&limit=42
+Senario Logs:[ [ 'HTTPレスポンスステータスが200で無い', { status: '500' } ],
+  [ 'TAT', { TAT: undefined, TimeOut: 1000 } ] ]
+
+No-03-06-itemTagsのALL一致
+Judge:Incorrect
+Options:{ port: 80,
+  method: 'GET',
+  hostname: '52.69.162.141',
+  headers: { Connection: 'close' },
+  path: '/searchOrder?findByItemTagsIncludeAll=%E9%A3%9F%E6%96%99%2C%E3%82%B9%E3%83%86%E3%83%B3%E3%83%AC%E3%82%B9%E5%90%88%E9%87%91%2C%E8%93%8B%E4%BB%98%E3%81%8D&limit=20' }
+DecodedPath:/searchOrder?findByItemTagsIncludeAll=食料,ステンレス合金,蓋付き&limit=20
+Senario Logs:[ [ 'HTTPレスポンスステータスが200で無い', { status: '500' } ],
+  [ 'TAT', { TAT: undefined, TimeOut: 1000 } ] ]
+
+No-03-07-itemTagsのAny一致
+Judge:Incorrect
+Options:{ port: 80,
+  method: 'GET',
+  hostname: '52.69.162.141',
+  headers: { Connection: 'close' },
+  path: '/searchOrder?findByItemTagsIncludeAny=%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%2C%E3%82%B9%E3%83%81%E3%83%BC%E3%83%AB%E9%8B%B3%E9%80%A0%2C%E3%82%B9%E3%83%81%E3%83%BC%E3%83%AB%E3%83%A1%E3%83%83%E3%82%AD&limit=80' }
+DecodedPath:/searchOrder?findByItemTagsIncludeAny=ソフトウェア,スチール鋳造,スチールメッキ&limit=80
+Senario Logs:[ [ 'HTTPレスポンスステータスが200で無い', { status: '500' } ],
+  [ 'TAT', { TAT: undefined, TimeOut: 1000 } ] ]
+
+Finished.

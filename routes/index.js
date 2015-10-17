@@ -27,7 +27,10 @@ router.get('/searchOrder', function(req, res){
     if(data.error) {
       return res.status(404).send(data);
     }
-    res.status(200).send(data);
+    res.status(200).send({
+      result: true,
+      data: data
+    });
   });
 });
 
