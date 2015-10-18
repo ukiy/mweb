@@ -18,8 +18,12 @@ function searchOrder(query){
     search.orderDateTime.$lte = parseInt(query.findByOrderDateTimeLTE);
   }
 //user
-  search.orderUserId = query.findByOrderUserId;
-  search.orderItemId = query.findByOrderItemId;
+  if (query.findByOrderUserId){
+    search.orderUserId = query.findByOrderUserId;
+  }
+  if (query.findByOrderItemId){
+    search.orderItemId = query.findByOrderItemId;
+  }
 
   search.orderQuantity = {};
   if (query.findByOrderQuantityGTE){
@@ -29,22 +33,26 @@ function searchOrder(query){
     search.orderQuantity.$lte = parseInt(query.findByOrderQuantityLTE);
   }
 
-  search.orderState = query.findByOrderState;
+  if (query.findByOrderState){
+    search.orderState = query.findByOrderState;
+  }
 
+  search.orderTags = {};
   if (query.findByOrderTagsIncludeAll){
     tags = query.findByOrderTagsIncludeAll.split(',');
+    search.orderTags.$all =  tags;
   }
-  search.orderTags = {};
-  search.orderTags.$all =  tags;
   tags = null;
   if (query.findByOrderTagsIncludeAny){
     tags = query.findByOrderTagsIncludeAny.split(',');
+    search.orderTags.$in = tags;
   }
-  search.orderTags.$in = tags;
   tags = null;
 
 // user
-  search['user.userCompany'] = query.findByUserCompany;
+  if (query.findByUserCompany){
+    search['user.userCompany'] = query.findByUserCompany;
+  }
   search['user.userDiscountRate'] = {};
   if (query.findByUserDiscountRateGTE){
     search['user.userDiscountRate'].$gte = parseInt(query.findByUserDiscountRateGTE);
@@ -54,7 +62,9 @@ function searchOrder(query){
   }
 
 // item
-  search['item.itemSupplier'] = query.findByItemSupplier;
+  if (query.findByItemSupplier){
+    search['item.itemSupplier'] = query.findByItemSupplier;
+  }
 
   search['item.itemStockQuantity'] = {};
   if (query.findByItemStockQuantityGTE){
@@ -75,13 +85,13 @@ function searchOrder(query){
   search['item.itemTags'] = {};
   if (query.findByItemTagsIncludeAll){
     tags = query.findByItemTagsIncludeAll.split(',');
+    search['item.itemTags'] = { $all: tags }
   }
-  search['item.itemTags'] = { $all: tags }
   tags = null;
   if (query.findByItemTagsIncludeAny){
     tags = query.findByItemTagsIncludeAny.split(',');
+    search['item.itemTags'] = { $in: tags }
   }
-  search['item.itemTags'] = { $in: tags }
   tags = null;
 
 
