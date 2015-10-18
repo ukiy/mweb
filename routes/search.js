@@ -11,15 +11,24 @@ function searchOrder(query){
   var tag;
   var limit;
   search.orderDateTime = {};
-  search.orderDateTime.$gte = parseInt(query.findByOrderDateTimeGTE);
-  search.orderDateTime.$lte = parseInt(query.findByOrderDateTimeLTE);
+  if (query.findByOrderDateTimeGTE){
+    search.orderDateTime.$gte = parseInt(query.findByOrderDateTimeGTE);
+  }
+  if (query.findByOrderDateTimeLTE)
+    search.orderDateTime.$lte = parseInt(query.findByOrderDateTimeLTE);
+  }
 //user
   search.orderUserId = query.findByOrderUserId;
   search.orderItemId = query.findByOrderItemId;
 
   search.orderQuantity = {};
-  search.orderQuantity.$gte = parseInt(query.findByOrderQuantityGTE);
-  search.orderQuantity.$lte = parseInt(query.findByOrderQuantityLTE);
+  if (query.findByOrderQuantityGTE){
+    search.orderQuantity.$gte = parseInt(query.findByOrderQuantityGTE);
+  }
+  if (query.findByOrderQuantityLTE){
+    search.orderQuantity.$lte = parseInt(query.findByOrderQuantityLTE);
+  }
+
   search.orderState = query.findByOrderState;
 
   if (query.findByOrderTagsIncludeAll){
@@ -35,25 +44,33 @@ function searchOrder(query){
   tags = null;
 
 // user
-  search.user = search.user || {};
   search['user.userCompany'] = query.findByUserCompany;
   search['user.userDiscountRate'] = {};
-  search['user.userDiscountRate'].$gte = parseInt(query.findByUserDiscountRateGTE);
-  search['user.userDiscountRate'].$lte = parseInt(query.findByUserDiscountRateLTE);
+  if (query.findByUserDiscountRateGTE){
+    search['user.userDiscountRate'].$gte = parseInt(query.findByUserDiscountRateGTE);
+  }
+  if (query.findByUserDiscountRateLTE){
+    search['user.userDiscountRate'].$lte = parseInt(query.findByUserDiscountRateLTE);
+  }
 
 // item
-  search.item = search.item || {};
   search['item.itemSupplier'] = query.findByItemSupplier;
 
-  search.item.itemStockQuantity = {};
   search['item.itemStockQuantity'] = {};
-  search['item.itemStockQuantity'].$gte = parseInt(query.findByItemStockQuantityGTE);
-  search['item.itemStockQuantity'].$lte = parseInt(query.findByItemStockQuantityLTE);
+  if (query.findByItemStockQuantityGTE){
+    search['item.itemStockQuantity'].$gte = parseInt(query.findByItemStockQuantityGTE);
+  }
+  if (query.findByItemStockQuantityLTE){
+    search['item.itemStockQuantity'].$lte = parseInt(query.findByItemStockQuantityLTE);
+  }
 
-  search.item.itemBasePrice = {};
   search['item.itemBasePrice'] = {};
-  search['item.itemBasePrice'].$gte = parseInt(query.findByItemBasePriceGTE);
-  search['item.itemBasePrice'].$lte = parseInt(query.findByItemBasePriceLTE);
+  if (query.findByItemBasePriceGTE){
+    search['item.itemBasePrice'].$gte = parseInt(query.findByItemBasePriceGTE);
+  }
+  if (query.findByItemBasePriceLTE){
+    search['item.itemBasePrice'].$lte = parseInt(query.findByItemBasePriceLTE);
+  }
 
   search['item.itemTags'] = {};
   if (query.findByItemTagsIncludeAll){
