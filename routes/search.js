@@ -34,64 +34,64 @@ function searchOrder(query){
   var search = {};
   console.log(query);
   if (query.hasOwnProperty('findByOrderDateTimeGTE')){
-    search.dateTime = { $gt: parseInt(query.findByOrderDateTimeGTE) };
+    search.orderDateTime = { $gt: parseInt(query.findByOrderDateTimeGTE) };
   }
   if (query.hasOwnProperty('findByOrderDateTimeLTE')){
-    search.dateTime = { $lt: parseInt(query.findByOrderDateTimeLTE) };
+    search.orderDateTime = { $lt: parseInt(query.findByOrderDateTimeLTE) };
   }
   if (query.hasOwnProperty('findByOrderUserId')){
-    search.userId = query.findByOrderUserId;
+    search.orderUserId = query.findByOrderUserId;
   }
   if (query.hasOwnProperty('findByOrderItemId')){
-    search.itemId = query.findByOrderItemId;
+    search.orderItemId = query.findByOrderItemId;
   }
   if (query.hasOwnProperty('findByOrderQuantityGTE')){
-    search.quantity = { $gte : query.findByOrderQuantityGTE };
+    search.orderQuantity = { $gte : query.findByOrderQuantityGTE };
   }
   if (query.hasOwnProperty('findByOrderQuantityLTE')){
-    search.quantity = { $lte : query.findByOrderQuantityLTE };
+    search.orderQuantity = { $lte : query.findByOrderQuantityLTE };
   }
   if (query.hasOwnProperty('findByOrderState')){
-    search.state = query.findByOrderState;
+    search.orderState = query.findByOrderState;
   }
   if (query.hasOwnProperty('findByOrderTagsIncludeAll')){
     // Todo conver String to array
     var tags = query.findByOrderTagsIncludeAll.split(',');
-    search.tags = { $all: query.findByOrderTagsIncludeAll }
+    search.orderTags = { $all: query.findByOrderTagsIncludeAll }
   }
   if (query.hasOwnProperty('findByOrderTagsIncludeAny')){
     // Todo conver String to array
     var tags = query.findByOrderTagsIncludeAny.split(',');
-    search.tags = { $in: query.findByOrderTagsIncludeAll };
+    search.orderTags = { $in: query.findByOrderTagsIncludeAll };
   }
   console.log('search', search);
   if (query.hasOwnProperty('limit')){
-    return Order.find(search).sort({'dateTime': -1}).limit(query.limit).exec();
+    return Order.find(search).sort({'orderDateTime': -1}).limit(query.limit).exec();
   }
-  return Order.find(search).sort({'dateTime': -1}).limit(100).exec();
+  return Order.find(search).sort({'orderDateTime': -1}).limit(100).exec();
 };
 
 function searchUser(query) {
   var search = {};
   console.log(query);
   if (query.hasOwnProperty('findByUserCompany')){
-    search.company = query.findByUserCompany;
+    search.userCompany = query.findByUserCompany;
   }
   if (query.hasOwnProperty('findByUserDiscountRateGTE')){
-    search.discountRate = { $gte: query.findByUserDiscountRateGTE };
+    search.userDiscountRate = { $gte: query.findByUserDiscountRateGTE };
   }
   if (query.hasOwnProperty('findByUserDiscountRateLTE')){
-    search.discountRate = { $gte: query.findByUserDiscountRateGTE };
+    search.userDiscountRate = { $gte: query.findByUserDiscountRateGTE };
   }
   if (query.hasOwnProperty('limit')){
     return User.find(search).exec().then(function(users){
-      var ids = _.pluck(users, '_id');
-      return Order.find({userId: {$in : ids}}).limit(query.limit).exec();
+      var ids = _.pluck(users, 'userId');
+      return Order.find({orderUserId: {$in : ids}}).limit(query.limit).exec();
     });
   }
   return User.find(search).limit(100).exec().then(function(users){
-    var ids = _.pluck(users, '_id');
-    return Order.find({userId: {$in : ids}}).limit(100).exec();
+    var ids = _.pluck(users, 'userId');
+    return Order.find({ordrUserId: {$in : ids}}).limit(100).exec();
   });
 };
 
@@ -99,36 +99,36 @@ function searchItem(query){
   var search = {};
   console.log(query);
   if (query.hasOwnProperty('findByItemSupplier')){
-    search.supplier = query.findByItemSupplier;
+    search.itemSupplier = query.findByItemSupplier;
   }
   if (query.hasOwnProperty('findByItemStockQuantityGTE')){
-    search.stockQuantity = { $gte: query.findByItemStockQuantityGTE };
+    search.itemStockQuantity = { $gte: query.findByItemStockQuantityGTE };
   }
   if (query.hasOwnProperty('findByItemStockQuantityLTE')){
-    search.stockQuantity = { $lte : query.findByItemStockQuantityLTE };
+    search.itemStockQuantity = { $lte : query.findByItemStockQuantityLTE };
   }
   if (query.hasOwnProperty('findByItemBasePriceGTE')){
-    search.basePrice = { $gte : query.findByItemBasePriceGTE };
+    search.itemBasePrice = { $gte : query.findByItemBasePriceGTE };
   }
   if (query.hasOwnProperty('findByItemBasePriceLTE')) {
-    search.basePrice = { $lte : query.findByItemBasePriceLTE };
+    search.itemBasePrice = { $lte : query.findByItemBasePriceLTE };
   }
   if (query.hasOwnProperty('findByItemTagsIncludeAll')){
     var tags = query.findByOrderTagsIncludeAny.split(',');
-    search.tags = { $all: query.findByItemTagsIncludeAll }
+    search.itemTags = { $all: query.findByItemTagsIncludeAll }
   }
   if (query.hasOwnProperty('findByItemTagsIncludeAny')){
-    search.tags = { $in: query.findByItemTagsIncludeAny }
+    search.itemTags = { $in: query.findByItemTagsIncludeAny }
   }
   if (query.hasOwnProperty('limit')){
     return Item.find(search).exec().then(function(items){
-      var ids = _.pluck(items, '_id');
-      return Order.find({itemId : {$in : ids } }).limit(query.limit).exec();
+      var ids = _.pluck(items, 'itemId');
+      return Order.find({orderItemId : {$in : ids } }).limit(query.limit).exec();
     });
   }
   return Item.find(search).exec().then(function(items){
-    var ids = _.pluck(items, '_id');
-    return Item.find({itemId : {$in : ids}}).limit(100).exec();
+    var ids = _.pluck(items, 'itemId');
+    return Item.find({orderItemId : {$in : ids}}).limit(100).exec();
   });
 }
 

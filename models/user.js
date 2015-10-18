@@ -2,13 +2,13 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-  _id: {
+  userId: {
     type: String
   },
-  company: {
+  userCompany: {
     type: String
   },
-  discountRate: {
+  userDiscountRate: {
     type: Number
   }
 });

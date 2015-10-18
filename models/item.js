@@ -2,19 +2,19 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ItemSchema = new Schema({
-  _id: {
+  itemId: {
     type: String
   },
-  supplier: {
+  itemSupplier: {
     type: String
   },
-  stockQuantity: {
+  itemStockQuantity: {
     type: Number
   },
-  basePrice: {
+  itemBasePrice: {
     type: Number
   },
-  tags: {
+  itemTags: {
     type: [String]
   }
 });

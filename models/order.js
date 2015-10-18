@@ -2,27 +2,27 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var OrderSchema = new Schema({
-  _id: {
+  orderId: {
     type:String
   },
-  dateTime: {
+  orderDateTime: {
     type: Number
   },
-  userId: {
+  orderUserId: {
     type: String,
     ref: 'User'
   },
-  itemId: {
+  orderItemId: {
     type: String,
     ref: 'Item'
   },
-  quantity: {
+  orderQuantity: {
     type: Number
   },
-  state: {
+  orderState: {
     type: String
   },
-  tags: {
+  orderTags: {
     type: [String]
   }
 });
