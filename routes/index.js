@@ -10,29 +10,29 @@ router.get('/', function(req, res, next) {
 
 router.get('/getOrder/:orderId', function(req, res, next){
   Order.find({orderId: req.params.orderId}, function(err, order){
+    res.setHeader('Content-Type', 'application/json');
     if (err){ return res.json({
       result: true,
       data: error
     }); }
     if (!order) {
-      return res.json({result: true,
-      data: order});
+      return res.end(JSON.stringify({result: true,data: order}));
     }
     var result = {
       result: true,
       data: order
     };
-    return res.json(result);
+    return res.end(JSON.stringify(result));
   })
 });
 
 router.get('/searchOrder', function(req, res){
   //console.time("db");
+  res.setHeader('Content-Type', 'application/json');
   search(req.query).exec(function(err, data){
-    if (err) { return res.json(err); }
+    if (err) { return res.end(JSON.stringify(err)); }
     //console.timeEnd("db");
-    res.setHeader('Content-Type', 'application/json');
-    return res.end(JSON.stringify(data));    
+    return res.end(JSON.stringify(data));
   });
 });
 
