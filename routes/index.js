@@ -32,7 +32,10 @@ router.get('/searchOrder', function(req, res){
   search(req.query).exec(function(err, data){
     if (err) { return res.end(JSON.stringify(err)); }
     //console.timeEnd("db");
-    return res.end(JSON.stringify(data));
+    return res.end(JSON.stringify({
+      result: true,
+      data:data
+    }));
   });
 });
 
