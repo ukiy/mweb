@@ -30,6 +30,9 @@ router.get('/searchOrder', function(req, res){
       data: data
     });
     console.timeEnd("all");
+  }).catch(function(err){
+    console.timeEnd("all");
+    console.log(err);
   });
 });
 
