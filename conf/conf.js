@@ -3,7 +3,7 @@ module.exports = {
     mongo: {
       uri: 'mongodb://localhost/mweb',
       opt: {
-        server: { poolSize : 10 }
+        server: {}
       }
     }
   },
