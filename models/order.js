@@ -7,7 +7,8 @@ var OrderSchema = new Schema({
     unique: true
   },
   orderDateTime: {
-    type: Number
+    type: Number,
+    index: true
   },
   orderUserId: {
     type: String,
