@@ -78,11 +78,11 @@ function searchOrder(query){
   }
 
   if (query.findByItemBasePriceGTE){
-    search['item.itemBasePrice'] = search['itemBasePrice'] || {};
+    search['item.itemBasePrice'] = search['item.itemBasePrice'] || {};
     search['item.itemBasePrice'].$gte = parseInt(query.findByItemBasePriceGTE);
   }
   if (query.findByItemBasePriceLTE){
-    search['item.itemBasePrice'] = search['itemBasePrice'] || {};
+    search['item.itemBasePrice'] = search['item.itemBasePrice'] || {};
     search['item.itemBasePrice'].$lte = parseInt(query.findByItemBasePriceLTE);
   }
 
