@@ -123,7 +123,7 @@ function searchItem(query){
   if (query.hasOwnProperty('limit')){
     return Item.find(search).exec().then(function(items){
       var ids = _.pluck(items, 'itemId');
-      return Order.find({orderItemId : {$in : ids } }).limit(query.limit).exec();
+      return Order.find({orderItemId : {$in : ids } }).limit(query.limit).exec().;
     });
   }
   return Item.find(search).exec().then(function(items){

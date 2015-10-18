@@ -3,18 +3,19 @@ var Schema = mongoose.Schema;
 
 var OrderSchema = new Schema({
   orderId: {
-    type:String
+    type:String,
+    unique: true
   },
   orderDateTime: {
     type: Number
   },
   orderUserId: {
     type: String,
-    ref: 'User'
+    index: true
   },
   orderItemId: {
     type: String,
-    ref: 'Item'
+    index: true
   },
   orderQuantity: {
     type: Number
