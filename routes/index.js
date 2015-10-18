@@ -10,7 +10,10 @@ router.get('/', function(req, res, next) {
 
 router.get('/getOrder/:orderId', function(req, res, next){
   Order.find({orderId: req.params.orderId}, function(err, order){
-    if (err){ return res.status(404); }
+    if (err){ return res.json({
+      result: true,
+      data: error
+    }); }
     if (!order) {
       return res.json({result: true,
       data: order});
