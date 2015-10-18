@@ -21,7 +21,7 @@ if (process.env.NODE_ENV == 'production'){
   conf = require('./conf/conf').development;
 }
 
-mongoose.connect(conf.mongo.uri);
+mongoose.connect(conf.mongo.uri, conf.mongo.opt);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

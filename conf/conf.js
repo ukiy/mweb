@@ -2,7 +2,9 @@ module.exports = {
   development: {
     mongo: {
       uri: 'mongodb://localhost/mweb',
-      opt: {}
+      opt: {
+        server: { poolSize : 10 }
+      }
     }
   },
   production: {
