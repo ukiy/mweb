@@ -16,7 +16,7 @@ router.get('/getOrder/:orderId', function(req, res, next){
       data: error
     }); }
     if (!order) {
-      return res.end(JSON.stringify({result: true,data: order}));
+      return res.end(JSON.stringify({result: false,data: order}));
     }
     var result = {
       result: true,
