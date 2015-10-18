@@ -23,7 +23,7 @@ router.get('/getOrder/:orderId', function(req, res, next){
 router.get('/searchOrder', function(req, res){
   console.time("db");
   search(req.query).exec(function(err, data){
-    if (err) { return console.log(err); }
+    if (err) { return res.status(200).send(err); }
     console.timeEnd("db");
     return res.status(200).send({
       result: true,
