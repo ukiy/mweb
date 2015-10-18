@@ -4,79 +4,78 @@ var Item = require('../models/item');
 var _ = require('lodash');
 
 module.exports = function(query){
-  var collection = null;
-  for (var pro in query) {
-    if (pro.indexOf('findByOrder') > -1) {
-      collection = 'order';
-      break;
-    }
-    if (pro.indexOf('findByUser') > -1) {
-      collection = 'user';
-      break;
-    }
-    if (pro.indexOf('findByItem') > -1) {
-      collection = 'item';
-      break;
-    }
-  }
-  if (collection === 'order'){
-    return searchOrder(query);
-  }
-  if (collection === 'user'){
-    return searchUser(query);
-  }
-  if (collection === 'item'){
-    return searchItem(query);
-  }
-  return { error: "invalid query"};
+  return searchOrder(query);
 }
 function searchOrder(query){
   var search = {};
+  var tag;
+  var limit;
   console.log(query);
-  if (query.hasOwnProperty('findByOrderDateTimeGTE')){
-    search.orderDateTime = { $gte: parseInt(query.findByOrderDateTimeGTE) };
+  search.orderDateTime = {};
+  search.orderDateTime.$gte = parseInt(query.findByOrderDateTimeGTE);
+  search.orderDateTime.$lte = parseInt(query.findByOrderDateTimeLTE);
+//user
+  search.orderUserId = query.findByOrderUserId;
+  search.orderItemId = query.findByOrderItemId;
+
+  search.orderQuantity = {};
+  search.orderQuantity.$gte : parseInt(query.findByOrderQuantityGTE);
+  search.orderQuantity.$lte = parseInt(query.findByOrderQuantityLTE);
+  search.orderState = query.findByOrderState;
+
+  if (query.findByOrderTagsIncludeAll){
+    tags = query.findByOrderTagsIncludeAll.split(',');
   }
-  if (query.hasOwnProperty('findByOrderDateTimeLTE')){
-    if (search.orderDateTime){
-      search.orderDateTime.$lte = parseInt(query.findByOrderDateTimeLTE);
-    }else {
-      search.orderDateTime = { $lte: parseInt(query.findByOrderDateTimeLTE) };
-    }
+  search.orderTags = {};
+  search.orderTags.$all =  tags;
+  tags = null;
+  if (query.findByOrderTagsIncludeAny){
+    tags = query.findByOrderTagsIncludeAny.split(',');
   }
-  if (query.hasOwnProperty('findByOrderUserId')){
-    search.orderUserId = query.findByOrderUserId;
+  search.orderTags.$in = tags;
+  tags = null;
+
+// user
+  search.user = search.user || {};
+  search.user.userCompany = query.findByUserCompany;
+  search.user.userDiscountRate = {};
+  search.user.userDiscountRate.$gte: parseInt(query.findByUserDiscountRateGTE);
+  search.user.userDiscountRate.$lte = parseInt(query.findByUserDiscountRateLTE);
+
+// item
+  search.item = search.item || {};
+  search.item.itemSupplier = query.findByItemSupplier;
+
+  search.item.itemStockQuantity = {};
+  search.item.itemStockQuantity.$gte = parseInt(query.findByItemStockQuantityGTE);
+  search.item.itemStockQuantity.$lte = parseInt(query.findByItemStockQuantityLTE);
+
+  search.item.itemBasePrice = {};
+  search.item.itemBasePrice.$gte : parseInt(query.findByItemBasePriceGTE) };
+  search.item.itemBasePrice.$lte = parseInt(query.findByItemBasePriceLTE);
+
+  search.item.itemTags = {};
+  if (query.findByItemTagsIncludeAll){
+    tags = query.findByItemTagsIncludeAll.split(',');
   }
-  if (query.hasOwnProperty('findByOrderItemId')){
-    search.orderItemId = query.findByOrderItemId;
+  search.item.itemTags = { $all: tags }
+  tags = null;
+  if (query.findByItemTagsIncludeAny){
+    tags = query.findByItemTagsIncludeAny.split(',');
   }
-  if (query.hasOwnProperty('findByOrderQuantityGTE')){
-    search.orderQuantity = { $gte : parseInt(query.findByOrderQuantityGTE) };
-  }
-  if (query.hasOwnProperty('findByOrderQuantityLTE')){
-    if (query.hasOwnProperty('findByOrderQuantityLTE')){
-      search.orderQuantity.$lte = parseInt(query.findByOrderQuantityLTE);
-    }else {
-      search.orderQuantity = { $lte : parseInt(query.findByOrderQuantityLTE) };
-    }
-  }
-  if (query.hasOwnProperty('findByOrderState')){
-    search.orderState = query.findByOrderState;
-  }
-  if (query.hasOwnProperty('findByOrderTagsIncludeAll')){
-    // Todo conver String to array
-    var tags = query.findByOrderTagsIncludeAll.split(',');
-    search.orderTags = { $all: query.findByOrderTagsIncludeAll }
-  }
-  if (query.hasOwnProperty('findByOrderTagsIncludeAny')){
-    // Todo conver String to array
-    var tags = query.findByOrderTagsIncludeAny.split(',');
-    search.orderTags = { $in: query.findByOrderTagsIncludeAll };
-  }
-  console.log('search', search);
+  search.itemTags = { $in: tags }
+  tags = null;
+
+
+
+
   if (query.hasOwnProperty('limit')){
-    return Order.find(search).sort({'orderDateTime': -1}).limit(query.limit).exec();
+    limit = parseInt(query.limit);
+  }else {
+    limit = 100;
   }
-  return Order.find(search).sort({'orderDateTime': -1}).limit(100).exec();
+  console.log(search);
+  return Order.find(search).sort({'orderDateTime': -1}).limit(limit).exec();
 };
 
 function searchUser(query) {
@@ -96,11 +95,13 @@ function searchUser(query) {
     }
   }
   if (query.hasOwnProperty('limit')){
+    console.log(search);
     return User.find(search).exec().then(function(users){
       var ids = _.pluck(users, 'userId');
       return Order.find({orderUserId: {$in : ids}}).sort({'orderDateTime': -1}).limit(query.limit).exec();
     });
   }
+  console.log(search);
   return User.find(search).limit(100).exec().then(function(users){
     var ids = _.pluck(users, 'userId');
     return Order.find({ordrUserId: {$in : ids}}).sort({'orderDateTime': -1}).limit(100).exec();
@@ -109,7 +110,6 @@ function searchUser(query) {
 
 function searchItem(query){
   var search = {};
-  console.log(query);
   if (query.hasOwnProperty('findByItemSupplier')){
     search.itemSupplier = query.findByItemSupplier;
   }
@@ -138,14 +138,17 @@ function searchItem(query){
     search.itemTags = { $all: query.findByItemTagsIncludeAll }
   }
   if (query.hasOwnProperty('findByItemTagsIncludeAny')){
+    var tags = query.findByItemTagsIncludeAny.split(',');
     search.itemTags = { $in: query.findByItemTagsIncludeAny }
   }
   if (query.hasOwnProperty('limit')){
+    console.log(search);
     return Item.find(search).exec().then(function(items){
       var ids = _.pluck(items, 'itemId');
       return Order.find({orderItemId : {$in : ids } }).sort({'orderDateTime': -1}).limit(query.limit).exec();
     });
   }
+  console.log(search);
   return Item.find(search).exec().then(function(items){
     var ids = _.pluck(items, 'itemId');
     return Item.find({orderItemId : {$in : ids}}).sort({'orderDateTime': -1}).limit(100).exec();
