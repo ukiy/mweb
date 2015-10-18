@@ -31,10 +31,8 @@ router.get('/searchOrder', function(req, res){
   search(req.query).exec(function(err, data){
     if (err) { return res.json(err); }
     //console.timeEnd("db");
-    return res.json({
-      result: true,
-      data: data
-    });
+    res.setHeader('Content-Type', 'application/json');
+    return res.end(JSON.stringify(data));    
   });
 });
 
