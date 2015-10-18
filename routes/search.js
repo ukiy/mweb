@@ -127,6 +127,7 @@ function searchItem(query){
     });
   }
   return Item.find(search).exec().then(function(items){
+    var ids = _.pluck(items, '_id');
     return Item.find({itemId : {$in : ids}}).limit(100).exec();
   });
 }
