@@ -2,12 +2,21 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ItemSchema = new Schema({
-  itemId: String,
-  itemSupplier: String,
-  itemStockQuantity: Number,
-  itemBesePrice: Number,
-  itemTags: [String]
-
+  _id: {
+    type: String
+  },
+  supplier: {
+    type: String
+  },
+  stockQuantity: {
+    type: Number
+  },
+  basePrice: {
+    type: Number
+  },
+  tags: {
+    type: [String]
+  }
 });
 
 module.exports = mongoose.model('Item', ItemSchema);
