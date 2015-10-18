@@ -10,7 +10,6 @@ function searchOrder(query){
   var search = {};
   var tag;
   var limit;
-  console.log(query);
   search.orderDateTime = {};
   search.orderDateTime.$gte = parseInt(query.findByOrderDateTimeGTE);
   search.orderDateTime.$lte = parseInt(query.findByOrderDateTimeLTE);
@@ -76,7 +75,6 @@ function searchOrder(query){
   }else {
     limit = 100;
   }
-  console.log(search);
   return Order.find(search).sort({'orderDateTime': -1}).limit(limit).exec();
 };
 
