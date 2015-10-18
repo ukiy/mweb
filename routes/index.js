@@ -4,9 +4,9 @@ var Order = require('../models/order');
 var search = require('./search');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+//router.get('/', function(req, res, next) {
+//  res.render('index', { title: 'Express' });
+//});
 
 router.get('/getOrder/:orderId', function(req, res, next){
   Order.find({orderId: req.params.orderId}, function(err, order){
