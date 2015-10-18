@@ -53,7 +53,7 @@ function searchOrder(query){
 
   search.item.itemBasePrice = {};
   search['item.itemBasePrice'] = {};
-  search['item.itemBasePrice'].$gte : parseInt(query.findByItemBasePriceGTE) };
+  search['item.itemBasePrice'].$gte = parseInt(query.findByItemBasePriceGTE) };
   search['item.itemBasePrice'].$lte = parseInt(query.findByItemBasePriceLTE);
 
   search['item.itemTags'] = {};
