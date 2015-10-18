@@ -39,7 +39,7 @@ function searchOrder(query){
   search.user = search.user || {};
   search['user.userCompany'] = query.findByUserCompany;
   search['user.userDiscountRate'] = {};
-  search['user.userDiscountRate'].$gte: parseInt(query.findByUserDiscountRateGTE);
+  search['user.userDiscountRate'].$gte = parseInt(query.findByUserDiscountRateGTE);
   search['user.userDiscountRate'].$lte = parseInt(query.findByUserDiscountRateLTE);
 
 // item
