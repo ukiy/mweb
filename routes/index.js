@@ -23,11 +23,13 @@ router.get('/getOrder/:orderId', function(req, res, next){
 
 router.get('/searchOrder', function(req, res){
   console.log(req.query);
+  console.time("all");
   search(req.query).then(function(data){
     res.status(200).send({
       result: true,
       data: data
     });
+    console.timeEnd("all");
   });
 });
 
