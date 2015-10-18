@@ -19,7 +19,7 @@ function searchOrder(query){
   search.orderItemId = query.findByOrderItemId;
 
   search.orderQuantity = {};
-  search.orderQuantity.$gte : parseInt(query.findByOrderQuantityGTE);
+  search.orderQuantity.$gte = parseInt(query.findByOrderQuantityGTE);
   search.orderQuantity.$lte = parseInt(query.findByOrderQuantityLTE);
   search.orderState = query.findByOrderState;
 
