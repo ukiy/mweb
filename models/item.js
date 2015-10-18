@@ -3,8 +3,8 @@ var Schema = mongoose.Schema;
 
 var ItemSchema = new Schema({
   itemId: {
-    type: String
-    unique: true,
+    type: String,
+    unique: true
   },
   itemSupplier: {
     type: String
