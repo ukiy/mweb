@@ -13,6 +13,7 @@ var OrderSchema = new Schema({
   },
   orderUserId: {
     type: String,
+    unique: true,
     index: true
   },
   user: {
@@ -29,6 +30,7 @@ var OrderSchema = new Schema({
   },
   orderItemId: {
     type: String,
+    unique: true,
     index: true
   },
   item: {
