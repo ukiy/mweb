@@ -110,10 +110,7 @@ function searchOrder(query){
     limit = 100;
   }
   //console.log(search);
-  return Order.find(search).sort({'orderDateTime': -1}).limit(limit).exec(function(err,data){
-    console.log(err);
-    //console.log(data);
-  });
+  return Order.find(search).sort({'orderDateTime': -1}).limit(limit).exec();
 };
 
 function searchUser(query) {
