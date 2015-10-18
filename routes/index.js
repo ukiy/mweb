@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var Order = require('../models/order');
-var _ = require('lodash');
 var search = require('./search');
 
 /* GET home page. */
