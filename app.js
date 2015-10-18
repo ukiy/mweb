@@ -4,6 +4,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var http = require('http'),
+    https = require('https');
+
+http.globalAgent.maxSockets = 25;
+
+https.globalAgent.maxSockets = 25;
+
 // config file
 var conf;
 
