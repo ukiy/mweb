@@ -21,14 +21,14 @@ router.get('/getOrder/:orderId', function(req, res, next){
 });
 
 router.get('/searchOrder', function(req, res){
-  console.time("all");
+  console.time("db");
   search(req.query).exec(function(err, data){
     if (err) { return console.log(err); }
+    console.timeEnd("db");
     return res.status(200).send({
       result: true,
       data: data
     });
-    console.timeEnd("all");
   });
 });
 
