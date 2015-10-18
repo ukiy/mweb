@@ -27,10 +27,10 @@ router.get('/getOrder/:orderId', function(req, res, next){
 });
 
 router.get('/searchOrder', function(req, res){
-  console.time("db");
+  //console.time("db");
   search(req.query).exec(function(err, data){
     if (err) { return res.json(err); }
-    console.timeEnd("db");
+    //console.timeEnd("db");
     return res.json({
       result: true,
       data: data
