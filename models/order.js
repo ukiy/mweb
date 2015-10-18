@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 var OrderSchema = new Schema({
   orderId: {
     type:String,
-    unique: true
+    unique: true,
+    index: true
   },
   orderDateTime: {
     type: Number,
@@ -36,26 +37,32 @@ var OrderSchema = new Schema({
       unique: true
     },
     itemSupplier: {
-      type: String
+      type: String,
+      index: true
     },
     itemStockQuantity: {
-      type: Number
+      type: Number,
+      index: true
     },
     itemBasePrice: {
-      type: Number
+      type: Number,
+      index: true
     },
     itemTags: {
       type: [String]
     }
   },
   orderQuantity: {
-    type: Number
+    type: Number,
+    index: true
   },
   orderState: {
-    type: String
+    type: String,
+    index: true
   },
   orderTags: {
-    type: [String]
+    type: [String],
+    index: true
   }
 });
 
