@@ -11,21 +11,24 @@ router.get('/', function(req, res, next) {
 router.get('/getOrder/:orderId', function(req, res, next){
   Order.find({orderId: req.params.orderId}, function(err, order){
     if (err){ return res.status(404); }
-    if (!order) { return res.status(404); }
+    if (!order) {
+      return res.json({result: true,
+      data: order});
+    }
     var result = {
       result: true,
       data: order
     };
-    return res.status(200).send(result);
+    return res.json(result);
   })
 });
 
 router.get('/searchOrder', function(req, res){
   console.time("db");
   search(req.query).exec(function(err, data){
-    if (err) { return res.status(200).send(err); }
+    if (err) { return res.json(err); }
     console.timeEnd("db");
-    return res.status(200).send({
+    return res.json({
       result: true,
       data: data
     });
