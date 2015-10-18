@@ -114,7 +114,7 @@ function searchItem(query){
     search.itemBasePrice = { $lte : query.findByItemBasePriceLTE };
   }
   if (query.hasOwnProperty('findByItemTagsIncludeAll')){
-    var tags = query.findByOrderTagsIncludeAny.split(',');
+    var tags = query.findByOrderTagsIncludeAll.split(',');
     search.itemTags = { $all: query.findByItemTagsIncludeAll }
   }
   if (query.hasOwnProperty('findByItemTagsIncludeAny')){
