@@ -86,12 +86,12 @@ function searchUser(query) {
   if (query.hasOwnProperty('limit')){
     return User.find(search).exec().then(function(users){
       var ids = _.pluck(users, 'userId');
-      return Order.find({orderUserId: {$in : ids}}).limit(query.limit).exec();
+      return Order.find({orderUserId: {$in : ids}}).sort({'orderDateTime': -1}).limit(query.limit).exec();
     });
   }
   return User.find(search).limit(100).exec().then(function(users){
     var ids = _.pluck(users, 'userId');
-    return Order.find({ordrUserId: {$in : ids}}).limit(100).exec();
+    return Order.find({ordrUserId: {$in : ids}}).sort({'orderDateTime': -1}).limit(100).exec();
   });
 };
 
@@ -123,12 +123,12 @@ function searchItem(query){
   if (query.hasOwnProperty('limit')){
     return Item.find(search).exec().then(function(items){
       var ids = _.pluck(items, 'itemId');
-      return Order.find({orderItemId : {$in : ids } }).limit(query.limit).exec();
+      return Order.find({orderItemId : {$in : ids } }).sort({'orderDateTime': -1}).limit(query.limit).exec();
     });
   }
   return Item.find(search).exec().then(function(items){
     var ids = _.pluck(items, 'itemId');
-    return Item.find({orderItemId : {$in : ids}}).limit(100).exec();
+    return Item.find({orderItemId : {$in : ids}}).sort({'orderDateTime': -1}).limit(100).exec();
   });
 }
 
