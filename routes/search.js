@@ -14,7 +14,7 @@ function searchOrder(query){
   if (query.findByOrderDateTimeGTE){
     search.orderDateTime.$gte = parseInt(query.findByOrderDateTimeGTE);
   }
-  if (query.findByOrderDateTimeLTE)
+  if (query.findByOrderDateTimeLTE){
     search.orderDateTime.$lte = parseInt(query.findByOrderDateTimeLTE);
   }
 //user
