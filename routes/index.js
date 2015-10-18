@@ -23,18 +23,14 @@ router.get('/getOrder/:orderId', function(req, res, next){
 
 router.get('/searchOrder', function(req, res){
   console.time("all");
-  var test = search(req.query).exec(function(err, data){
+  search(req.query).exec(function(err, data){
     if (err) { return console.log(err); }
-    res.status(200).send({
+    return res.status(200).send({
       result: true,
       data: data
     });
     console.timeEnd("all");
-  }).catch(function(err){
-    console.timeEnd("all");
-    console.log(err);
   });
-  console.log(test);
 });
 
 module.exports = router;
