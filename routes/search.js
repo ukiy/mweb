@@ -37,33 +37,35 @@ function searchOrder(query){
 
 // user
   search.user = search.user || {};
-  search.user.userCompany = query.findByUserCompany;
-  search.user.userDiscountRate = {};
-  search.user.userDiscountRate.$gte: parseInt(query.findByUserDiscountRateGTE);
-  search.user.userDiscountRate.$lte = parseInt(query.findByUserDiscountRateLTE);
+  search['user.userCompany'] = query.findByUserCompany;
+  search['user.userDiscountRate'] = {};
+  search['user.userDiscountRate'].$gte: parseInt(query.findByUserDiscountRateGTE);
+  search['user.userDiscountRate'].$lte = parseInt(query.findByUserDiscountRateLTE);
 
 // item
   search.item = search.item || {};
-  search.item.itemSupplier = query.findByItemSupplier;
+  search['item.itemSupplier'] = query.findByItemSupplier;
 
   search.item.itemStockQuantity = {};
-  search.item.itemStockQuantity.$gte = parseInt(query.findByItemStockQuantityGTE);
-  search.item.itemStockQuantity.$lte = parseInt(query.findByItemStockQuantityLTE);
+  search['item.itemStockQuantity'] = {};
+  search['item.itemStockQuantity'].$gte = parseInt(query.findByItemStockQuantityGTE);
+  search['item.itemStockQuantity'].$lte = parseInt(query.findByItemStockQuantityLTE);
 
   search.item.itemBasePrice = {};
-  search.item.itemBasePrice.$gte : parseInt(query.findByItemBasePriceGTE) };
-  search.item.itemBasePrice.$lte = parseInt(query.findByItemBasePriceLTE);
+  search['item.itemBasePrice'] = {};
+  search['item.itemBasePrice'].$gte : parseInt(query.findByItemBasePriceGTE) };
+  search['item.itemBasePrice'].$lte = parseInt(query.findByItemBasePriceLTE);
 
-  search.item.itemTags = {};
+  search['item.itemTags'] = {};
   if (query.findByItemTagsIncludeAll){
     tags = query.findByItemTagsIncludeAll.split(',');
   }
-  search.item.itemTags = { $all: tags }
+  search['item.itemTags'] = { $all: tags }
   tags = null;
   if (query.findByItemTagsIncludeAny){
     tags = query.findByItemTagsIncludeAny.split(',');
   }
-  search.itemTags = { $in: tags }
+  search['item.itemTags'] = { $in: tags }
   tags = null;
 
 
